@@ -1,24 +1,33 @@
 function calcularMedia() {
-    let nota1 = document.getElementById("nota1").value;
-    let nota2 = document.getElementById("nota2").value;
+    let altura = document.getElementById("Altura").value;
+    let peso = document.getElementById("Peso").value;
     let resultado = document.getElementById("resultado");
 
-    if (nota1 === "" || nota2 === "") {
-        resultado.textContent = "Digite as duas notas!";
+    if (altura === "" || peso === "") {
+        resultado.textContent = "Digite seu peso e altura!";
         resultado.className = "";
         return;
     }
 
-    nota1 = Number(nota1);
-    nota2 = Number(nota2);
+    altura = Number(altura) /100 ;
+    peso = Number(peso);
 
-    let media = (nota1 + nota2) / 2;
+    let imc = peso / (altura * altura);
 
-    if (media >= 7) {
-        resultado.textContent = "Aprovado! Média: " + media.toFixed(1);
-        resultado.className = "aprovado";
-    } else {
-        resultado.textContent = "Reprovado! Média: " + media.toFixed(1);
-        resultado.className = "reprovado";
+    if (imc < 18.5) {
+        resultado.textContent = "Abaixo do peso: " + imc.toFixed(1);
+        resultado.className = "baixo";
+    } 
+    else if (imc < 25) {
+        resultado.textContent = "Peso normal: " + imc.toFixed(1);
+        resultado.className = "normal";
+    } 
+    else if (imc < 30) {
+        resultado.textContent = "Sobrepeso: " + imc.toFixed(1);
+        resultado.className = "sobrepeso";
+    } 
+    else {
+        resultado.textContent = "Obesidade: " + imc.toFixed(1);
+        resultado.className = "obeso";
     }
 }
